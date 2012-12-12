@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 module ActiveMerchant #:nodoc:
   module Billing #:nodoc:
     # This module is included in both PaypalGateway and PaypalExpressGateway
@@ -317,7 +318,8 @@ module ActiveMerchant #:nodoc:
             xml.tag! 'n2:Version', API_VERSION
             xml.tag! 'TransactionID', identification
             xml.tag! 'Amount', amount(money), 'currencyID' => (options[:currency] || currency(money)) if money.present?
-            xml.tag! 'RefundType', (options[:refund_type] || (money.present? ? 'Partial' : 'Full'))
+            #xml.tag! 'RefundType', (options[:refund_type] || (money.present? ? 'Partial' : 'Full'))
+            xml.tag! 'RefundType', 'Full'
             xml.tag! 'Memo', options[:note] unless options[:note].blank?
           end
         end
